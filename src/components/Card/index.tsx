@@ -1,14 +1,22 @@
 import { Container, Label } from './styles';
 
-export function Card() {
+interface CardProps {
+  data: {
+    content: string;
+    labels: string[];
+    user?: string;
+  }
+}
+
+export function Card({ data }: CardProps) {
   return (
     <Container>
       <header>
-        <Label color='#7159c1' />
+        {data.labels.map(label => <Label key={label} color={label} />)}
       </header>
 
-      <p>Fazer a migração completa do servidor</p>
-      <img src="https://github.com/raphaeljcm.png" alt="my photo" />
+      <p>{data.content}</p>
+      {data.user && <img src={data.user} alt="User photo" />}
     </Container>
   );
 }
