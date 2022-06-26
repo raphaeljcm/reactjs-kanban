@@ -1,6 +1,8 @@
+import { PropsWithRef } from "react";
 import styled, { css } from "styled-components";
 
 interface ContainerProps {
+  ref: PropsWithRef<any>;
   isDragging: boolean;
 }
 
@@ -38,7 +40,7 @@ export const Container = styled.div<ContainerProps>`
     border-radius: 0;
     background-color: transparent;
     box-shadow: none;
-    cursor: grabbing !important;
+    cursor: grabbing;
 
     p, img, header {
       opacity: 0;

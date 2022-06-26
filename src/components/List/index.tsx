@@ -15,9 +15,10 @@ interface ListProps {
       user?: string;
     }[]
   }
+  index: number;
 }
 
-export function List({ data }: ListProps) {
+export function List({ data, index: listIndex }: ListProps) {
   return (
     <Container done={data.done}>
       <header>
@@ -30,7 +31,13 @@ export function List({ data }: ListProps) {
       </header>
 
       <ul>
-        {data.cards.map(card => <Card key={card.id} data={card} />)}
+        {data.cards.map((card, index) => 
+          <Card 
+            key={card.id} 
+            listIndex={listIndex} 
+            index={index} 
+            data={card} 
+          />)}
       </ul>
     </Container>
   );
