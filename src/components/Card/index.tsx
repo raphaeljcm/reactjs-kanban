@@ -1,3 +1,5 @@
+import { useDrag } from 'react-dnd';
+
 import { Container, Label } from './styles';
 
 interface CardProps {
@@ -9,8 +11,15 @@ interface CardProps {
 }
 
 export function Card({ data }: CardProps) {
+  const [{ isDragging }, dragRef] = useDrag({
+    type: 'CARD',
+    collect: monitor => ({
+      isDragging: monitor.isDragging(),
+    })
+  });
+
   return (
-    <Container>
+    <Container ref={dragRef} isDragging={isDragging}>
       <header>
         {data.labels.map(label => <Label key={label} color={label} />)}
       </header>

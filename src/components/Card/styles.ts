@@ -1,6 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
-export const Container = styled.div`
+interface ContainerProps {
+  isDragging: boolean;
+}
+
+export const Container = styled.div<ContainerProps>`
   position: relative;
   background-color: #fff;
   border-radius: 5px;
@@ -27,6 +31,19 @@ export const Container = styled.div`
     border-radius: 2px;
     margin-top: 5px;
   }
+
+  ${props => props.isDragging && css`
+    border: 2px dashed rgba(0, 0, 0, .2);
+    padding-top: 31px;
+    border-radius: 0;
+    background-color: transparent;
+    box-shadow: none;
+    cursor: grabbing !important;
+
+    p, img, header {
+      opacity: 0;
+    }
+  `}
 `;
 
 export const Label = styled.span`
